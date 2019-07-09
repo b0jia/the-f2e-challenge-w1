@@ -1,0 +1,37 @@
+.global-navigation {
+  position: fixed;
+  top: 0;
+  right: 5.25rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 5.25rem 0 3rem 0;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  color: $white;
+  display: block;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-right: 0;
+  font-family: 'Hind Siliguri', #{$font-family-monospace};
+  font-size: 1.5rem;
+  line-height: inherit;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.brand-title {
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+
+.navbar-menu {
+  flex: 1 1 100%;
+}
+
+.nav-link {
+  font-size: 2.25rem;
+}

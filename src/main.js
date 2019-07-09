@@ -1,7 +1,11 @@
 import Vue from 'vue';
+import 'animation.css';
+
 import App from './App.vue';
-import router from './router';
+import router from './routes';
 import store from './store';
+
+import './assets/sass/styles.scss';
 
 Vue.config.productionTip = false;
 
