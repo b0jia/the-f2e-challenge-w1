@@ -1,0 +1,68 @@
+.todo-editor {
+}
+
+.todo-editor-wrapper {
+  position: relative;
+}
+
+.todo-editor-quickbar {
+  position: relative;
+
+  &:hover {
+    #toggleFull {
+      opacity: 1;
+    }
+  }
+
+  &.show-full-form {
+    #toggleFull {
+      opacity: 1;
+      .material-icons {
+        transform: rotateZ(180deg);
+      }
+    }
+  }
+
+  .form-control, .custom-select {
+    border-bottom: none;
+    // Placeholder
+    &::placeholder {
+      color: $pink;
+      // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+      opacity: 1;
+      text-transform: uppercase;
+      font-style: italic;
+      font-weight: 700;
+    }
+  }
+
+  .btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+
+    &#toggleFull {
+      right: 58px;
+    }
+  }
+
+  #toggleFull {
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+
+    .material-icons {
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
+
+.todo-editor-full-form {
+  position: absolute;
+  left: 0;
+  top: calc(100% + .5rem);
+  width: 100%;
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: $box-shadow-lg;
+}

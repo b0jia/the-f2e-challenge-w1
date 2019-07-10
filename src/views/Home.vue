@@ -1,19 +1,24 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="page page-home">
+    <div class="pomodoro-jobs">
+      <todo-editor />
+
+      <!-- current time (number) -->
+      <!-- next jobs -->
+    </div>
+    <div class="pomodoro-timer"></div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import TodoEditor from '@/components/TodoEditor.vue';
 
 export default {
   name: 'Home',
 
   components: {
-    HelloWorld,
+    TodoEditor,
   },
 };
 </script>
