@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import 'animation.css';
+import 'animate.css';
 
 import App from './App.vue';
 import router from './routes';
