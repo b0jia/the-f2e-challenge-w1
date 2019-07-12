@@ -14,7 +14,10 @@ module.exports = {
       'error',
       {
         'props': true,
-        ignorePropertyModificationsFor: ['Vue'],
+        'ignorePropertyModificationsFor': [
+          'state',
+          'Vue',
+        ],
       },
     ],
   },

@@ -2,16 +2,18 @@
   <div>
     <div
       class="todo-editor-wrapper"
+      v-click-outside="hideFull"
     >
       <div
         class="todo-editor-quickbar"
-        :class="{'show-full-form': showFull}"
+        :class="[errorAnimateClass, {'show-full-form': showFull}]"
       >
         <input
           type="text"
           class="form-control form-control-lg"
           placeholder="add a new mission…"
           v-model="todo.title"
+          ref="todoInput"
         >
         <button
           id="toggleFull"
@@ -41,7 +43,6 @@
           class="todo-editor-full-form"
           :class="{'show': showFull}"
           v-if="showFull"
-          v-click-outside="hideFull"
           ref="fullForm"
         >
           <div class="row">
@@ -125,6 +126,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 import Datepicker from 'vue2-datepicker';
 import moment from 'moment';
 
@@ -138,6 +140,7 @@ export default {
   data() {
     return {
       showFull: false,
+      error: false,
       todo: {
         title: '',
         estimated: 1, // tomatoes, each tomato mean 30 mins.
@@ -166,6 +169,10 @@ export default {
     aboutHours() {
       return this.todo.estimated * 0.5;
     },
+
+    errorAnimateClass() {
+      return this.error ? 'shake animated fast' : null;
+    },
   },
 
   mounted() {
@@ -189,7 +196,39 @@ export default {
       this.toggleFullForm(false);
     },
 
-    addTodo() {},
+    addTodo() {
+      // console.log(this.todo);
+      if (this.title === '' || this.title === null || this.title === undefined) {
+        this.$refs.todoInput.focus();
+        this.error = true;
+        window.setTimeout(() => {
+          this.error = false;
+        }, 800);
+        return;
+      }
+      this.TODO_ADD(this.todo);
+      this.resetTodo();
+      this.toggleFullForm(false);
+    },
+
+    resetTodo() {
+      this.todo = {
+        title: '',
+        estimated: 1, // tomatoes, each tomato mean 30 mins.
+        dueDate: null,
+        level: 1, // 0-1-2: height to low
+        descriptions: '',
+        createdAt: 0,
+        firstStartedAt: 0,
+        startedAt: 0,
+        finishedAt: 0,
+        workingRecords: [],
+      };
+    },
+
+    ...mapMutations('todos', [
+      'TODO_ADD',
+    ]),
 
     // // Transition functions...
     // navbarNavEnter(el, done) {

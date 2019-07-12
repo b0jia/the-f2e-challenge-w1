@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+// import { mapMutations } from 'vuex';
 import Navigation from './components/Navigation.vue';
 
 export default {
@@ -35,13 +35,14 @@ export default {
   },
 
   created() {
-    this.$store.commit('todos/initTodos');
+    this.$store.dispatch('todos/TODOS_INIT');
+    // this.TODOS_INIT();
   },
 
   computed: {
-    ...mapMutations('todos', [
-      'initTodos',
-    ]),
+    // ...mapMutations('todos', [
+    //   'TODOS_INIT',
+    // ]),
   },
 };
 </script>
