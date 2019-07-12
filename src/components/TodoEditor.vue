@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="todo-editor-wrapper">
+    <div
+      class="todo-editor-wrapper"
+    >
       <div
         class="todo-editor-quickbar"
         :class="{'show-full-form': showFull}"
@@ -39,12 +41,14 @@
           class="todo-editor-full-form"
           :class="{'show': showFull}"
           v-if="showFull"
+          v-click-outside="hideFull"
+          ref="fullForm"
         >
           <div class="row">
-            <div class="col-12 col-lg-6">
+            <div class="col-12">
               <div class="form-group row">
-                <label for="inputEstimated" class="col-sm-4 col-form-label">Estimated</label>
-                <div class="col-sm-8">
+                <label for="inputEstimated" class="col-3 col-form-label">Estimated</label>
+                <div class="col-9">
                   <select
                     id="inputEstimated"
                     class="custom-select"
@@ -62,10 +66,10 @@
                 </div>
               </div>
             </div>
-            <div class="col-12 col-lg-6">
+            <div class="col-12">
               <div class="form-group row">
-                <label for="inputLevel" class="col-sm-4 col-form-label">Level</label>
-                <div class="col-sm-8">
+                <label for="inputLevel" class="col-3 col-form-label">Level</label>
+                <div class="col-9">
                   <select
                     id="inputLevel"
                     class="custom-select"
@@ -80,8 +84,8 @@
             </div>
             <div class="col-12">
               <div class="form-group row">
-                <label for="inputDueDate" class="col-sm-2 col-form-label">Due Date</label>
-                <div class="col-sm-10">
+                <label for="inputDueDate" class="col-3 col-form-label">Due Date</label>
+                <div class="col-9">
                   <datepicker
                     id="inputDueDate"
                     lang="en"
@@ -94,8 +98,8 @@
             </div>
             <div class="col-12">
               <div class="form-group row">
-                <label for="inputDescriptions" class="col-sm-2 col-form-label">Descriptions</label>
-                <div class="col-sm-10">
+                <label for="inputDescriptions" class="col-3 col-form-label">Descriptions</label>
+                <div class="col-9">
                   <textarea
                     id="inputDescriptions"
                     class="form-control"
@@ -147,6 +151,14 @@ export default {
         workingRecords: [],
       },
       tweenTL: null,
+      // vcoConfig: {
+      //   // handler: this.handler,
+      //   // middleware: this.middleware,
+      //   events: ['dblclick', 'click'],
+      //   // Note: The default value is true, but in case you want to activate / deactivate
+      //   //       this directive dynamically use this attribute.
+      //   isActive: true,
+      // },
     };
   },
 
@@ -157,16 +169,24 @@ export default {
   },
 
   mounted() {
+    this.popupItem = this.$refs.fullForm;
     this.todo.dueDate = moment(new Date()).format('YYYY-MM-DD');
   },
 
   methods: {
     toggleFullForm(action) {
       if (action !== undefined && typeof action === 'boolean') {
+        console.log(action);
         this.showFull = action;
+        return;
       }
 
       this.showFull = !this.showFull;
+    },
+
+    hideFull() {
+      console.log('v-click-outside');
+      this.toggleFullForm(false);
     },
 
     addTodo() {},

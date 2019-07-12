@@ -1,6 +1,7 @@
 <template>
   <div id="app"
-    class="app-wrapper app-theme-working"
+    class="app-wrapper"
+    :class="[`app-theme-${currentJob}`]"
   >
     <navigation></navigation>
 
@@ -17,6 +18,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 import Navigation from './components/Navigation.vue';
 
 export default {
@@ -24,6 +26,22 @@ export default {
 
   components: {
     Navigation,
+  },
+
+  data() {
+    return {
+      currentJob: 'working', // working, resting
+    };
+  },
+
+  created() {
+    this.$store.commit('todos/initTodos');
+  },
+
+  computed: {
+    ...mapMutations('todos', [
+      'initTodos',
+    ]),
   },
 };
 </script>

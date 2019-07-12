@@ -1,0 +1,36 @@
+.checkbox {
+  position: relative;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  border: 2px solid $white;
+
+  .checkbox-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 1rem;
+    font-weight: 700;
+    transform: translate(-50%, -50%);
+  }
+
+  &-light {
+    border-color: $white;
+    color: $white;
+  }
+
+  &-dark {
+    border-color: $black;
+    color: $black;
+  }
+
+  &-navy {
+    border-color: $navy;
+    color: $navy;
+  }
+
+  &-pink {
+    border-color: $pink;
+    color: $pink;
+  }
+}

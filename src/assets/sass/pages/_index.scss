@@ -2,6 +2,8 @@
   padding: 3rem 1.25rem;
 
   @include media-breakpoint-up (md) {
-    padding: 3rem 5.3125rem;
+    padding: 3rem 10.4375rem 3rem 5.3125rem;
   }
 }
+
+@import './home';
