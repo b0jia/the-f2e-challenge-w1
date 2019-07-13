@@ -2,6 +2,7 @@
   <div
     class="checkbox"
     :class="[`checkbox-${theme}`]"
+    @click="clickHandler"
   >
     <i
       class="checkbox-icon material-icons"
@@ -23,6 +24,12 @@ export default {
     checked: {
       default: false,
       type: Boolean,
+    },
+  },
+
+  methods: {
+    clickHandler() {
+      this.$emit('click-check');
     },
   },
 };

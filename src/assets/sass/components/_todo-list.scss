@@ -15,7 +15,12 @@
     border-bottom: none;
     justify-content: flex-end;
   }
+
+  @at-root .todo-current & {
+    padding: 0;
+  }
 }
+
 
 .todo-checkbox {
   flex: 0 0 auto;
@@ -28,9 +33,19 @@
       border: 1px solid $navy;
     }
   }
+
+  @at-root .todo-current & {
+    margin-right: 1rem;
+
+    .checkbox {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
 }
 
 .todo-title {
+  color: $navy;
   flex-basis: 0;
   flex-grow: 1;
   max-width: 100%;
@@ -40,6 +55,10 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+
+  @at-root .todo-current & {
+    font-size: 1.5rem;
+  }
 }
 
 .todo-actions {
@@ -48,6 +67,18 @@
   // display: flex;
   // align-items: center;
   // font-size: 1.5rem;
+}
+
+.todo-summary {
+  .todo-clock {
+    display: inline-block;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    // background-color: rgba($black, .1);
+    border: 1px solid $navy;
+    margin: 0 4px;
+  }
 }
 
 .todo-list-theme {

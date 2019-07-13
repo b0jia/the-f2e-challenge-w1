@@ -30,6 +30,17 @@
     // max-width: 45%;
     max-width: 475px;
   }
+
+  .todo-editor-wrapper, .todo-list-wrapper {
+    flex: 0 0 auto;
+  }
+
+  .todo-list-wrapper {
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
 }
 
 .pomodoro-timer-wrapper {

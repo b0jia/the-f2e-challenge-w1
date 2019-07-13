@@ -18,7 +18,7 @@
 </template>
 
 <script>
-// import { mapMutations } from 'vuex';
+import { mapState } from 'vuex';
 import Navigation from './components/Navigation.vue';
 
 export default {
@@ -30,12 +30,13 @@ export default {
 
   data() {
     return {
-      currentJob: 'working', // working, resting
+      // currentJob: 'working', // working, resting
     };
   },
 
   created() {
     this.$store.dispatch('todos/TODOS_INIT');
+    this.$store.dispatch('setting/SETTING_INIT');
     // this.TODOS_INIT();
   },
 
@@ -43,6 +44,9 @@ export default {
     // ...mapMutations('todos', [
     //   'TODOS_INIT',
     // ]),
+    ...mapState('job', {
+      currentJob: 'status',
+    }),
   },
 };
 </script>

@@ -24,7 +24,7 @@
           <div class="todo-checkbox">
             <checkbox :checked="todo.finishedAt !== 0" />
           </div>
-          <div class="todo-title">ContentContentContentContentContentContent</div>
+          <div class="todo-title">{{ todo.title }}</div>
           <div
             class="todo-actions"
             v-if="todo.finishedAt === 0"
@@ -40,10 +40,22 @@
         </li>
         <li
           class="todo-item todo-item-more"
-          v-if="showMore"
+          v-if="showMore && list.length > 0"
         >
           <div class="todo-actions">
             <a href="#">MORE</a>
+          </div>
+        </li>
+        <li
+          class="todo-item todo-item-more"
+          v-if="list.length === 0"
+        >
+          <div class="todo-actions">
+            <a
+              href="#"
+              class="text-uppercase"
+              @click.prevent="addNewMission"
+            >add a new mission…</a>
           </div>
         </li>
       </ul>
@@ -101,6 +113,10 @@ export default {
   methods: {
     toggleBody() {
       this.bActive = !this.bActive;
+    },
+
+    addNewMission() {
+      this.$bus.$emit('focus-todo-editor-title');
     },
   },
 };
