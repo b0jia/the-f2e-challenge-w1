@@ -1,0 +1,13 @@
+.btn {
+  &-todo-cutline {
+    line-height: 1;
+    padding-top: 0;
+    padding-bottom: 0;
+    vertical-align: middle;
+    font-size: 1.25rem;
+
+    .material-icons {
+      display: block;
+    }
+  }
+}

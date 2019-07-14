@@ -3,6 +3,7 @@
 
 .todo-editor-wrapper {
   position: relative;
+  z-index: 100;
 }
 
 .todo-editor-quickbar {
@@ -65,4 +66,15 @@
   padding: 30px;
   background-color: #fff;
   box-shadow: $box-shadow-lg;
+  // pointer-events: none;
+
+  // &.show {
+  //   pointer-events: auto;
+  // }
+
+  .form-control {
+    &[readonly] {
+      background-color: $white;
+    }
+  }
 }
