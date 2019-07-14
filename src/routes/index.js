@@ -19,14 +19,31 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
     },
-    {
-      path: '/analytics',
-      name: 'analytics',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ '../views/Analytics.vue'),
-    },
+    // {
+    //   path: '',
+    //   component: () => import('../layouts/TwoColumns.vue'),
+    //   children: [
+    //     {
+    //       path: 'todos',
+    //       name: 'todo-list',
+    //       component: () => import('../views/Todos.vue'),
+    //     },
+    //     {
+    //       path: 'analytics',
+    //       name: 'todo-analytics',
+    //       // route level code-splitting
+    //       // this generates a separate chunk (about.[hash].js) for this route
+    //       // which is lazy-loaded when the route is visited.
+    //       component: () => import(/* webpackChunkName: "about" */ '../views/Analytics.vue'),
+    //     },
+    //     {
+    //       path: '*',
+    //       redirect: {
+    //         name: 'todo-list',
+    //       },
+    //     },
+    //   ],
+    // },
     {
       path: '/todos',
       name: 'todos',
@@ -34,6 +51,14 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ '../views/Todos.vue'),
+    },
+    {
+      path: '/analytics',
+      name: 'analytics',
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "about" */ '../views/Analytics.vue'),
     },
     {
       path: '/settings',

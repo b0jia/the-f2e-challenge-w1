@@ -22,9 +22,25 @@
           :key="index"
         >
           <div class="todo-checkbox">
-            <checkbox :checked="todo.finishedAt !== 0" />
+            <checkbox
+              :checked="todo.finishedAt !== 0"
+              :theme="theme"
+              @click.prevent="clickCheck(todo)"
+            />
           </div>
           <div class="todo-title">{{ todo.title }}</div>
+          <div
+            class="todo-summary-wrapper"
+          >
+            <div class="todo-summary todo-summary-actual">
+              <span
+                class="todo-clock"
+                :class="{}"
+                v-for="i in todo.workingRecords"
+                :key="i"
+              ></span>
+            </div>
+          </div>
           <div
             class="todo-actions"
             v-if="todo.finishedAt === 0"
@@ -33,10 +49,6 @@
               <i class="material-icons">play_circle_outline</i>
             </button>
           </div>
-          <div
-            class="todo-summary"
-            v-else
-          >OOO</div>
         </li>
         <li
           class="todo-item todo-item-more"
@@ -48,7 +60,7 @@
         </li>
         <li
           class="todo-item todo-item-more"
-          v-if="list.length === 0"
+          v-if="list.length === 0 && showMore === true"
         >
           <div class="todo-actions">
             <a
@@ -117,6 +129,10 @@ export default {
 
     addNewMission() {
       this.$bus.$emit('focus-todo-editor-title');
+    },
+
+    clickCheck(todo) {
+      this.$emit('click-check', todo);
     },
   },
 };

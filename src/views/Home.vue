@@ -7,7 +7,9 @@
         />
 
         <!-- current time (number) -->
-        <div class="todo-current">
+        <div class="todo-current"
+          v-if="currentTodo"
+        >
           <div class="todo-item">
             <div class="todo-checkbox">
               <checkbox
@@ -18,14 +20,24 @@
             <div class="todo-content">
               <div class="todo-title">{{ currentTodo.title }}</div>
               <div
-                class="todo-summary"
+                class="todo-summary-wrapper"
               >
-                <span
-                  class="todo-clock"
-                  :class="{}"
-                  v-for="i in currentTodo.estimated"
-                  :key="i"
-                ></span>
+                <div class="todo-summary todo-summary-estimations">
+                  <span
+                    class="todo-clock"
+                    :class="{}"
+                    v-for="i in currentTodo.estimated"
+                    :key="i"
+                  ></span>
+                </div>
+                <div class="todo-summary todo-summary-actual">
+                  <!-- <span
+                    class="todo-clock"
+                    :class="{}"
+                    v-for="i in currentTodo.workingRecords"
+                    :key="i"
+                  ></span> -->
+                </div>
               </div>
             </div>
           </div>
@@ -33,6 +45,12 @@
           <div class="pomodoro-timer-text todo-timer-text">
             {{ timerGetString }}
           </div>
+        </div>
+        <div
+          class="todo-current no-todos"
+          v-else
+        >
+          Please add a new mission to start.
         </div>
         <!-- next jobs -->
         <todo-list theme="navy" :list="nextItems" :show-more="true" />
@@ -42,6 +60,7 @@
           <div
             class="timer-action timer-action-pp"
             @click.prevent="toogleTimer"
+            v-if="currentTodo"
           >
             <i
               class="material-icons icon-play"
@@ -57,6 +76,7 @@
           <div
             class="timer-action timer-action-stop"
             @click.prevent="stopTimer"
+            v-if="currentTodo"
           >
             <i class="material-icons icon-stop">stop</i>
           </div>
@@ -72,7 +92,6 @@ import { mapState, mapGetters, mapMutations } from 'vuex';
 import Checkbox from '@/components/Checkbox.vue';
 import TodoEditor from '@/components/TodoEditor.vue';
 import TodoList from '@/components/TodoList.vue';
-import timer from '../helpers/timer';
 
 export default {
   name: 'Home',
@@ -86,15 +105,10 @@ export default {
   data() {
     return {
       nextItemsNum: 3,
-
-      timer: null,
     };
   },
 
   computed: {
-    // todoList() {
-    //   return
-    // },
     nextItems() {
       return this.activeTodos.slice(1, this.nextItemsNum + 1);
     },
@@ -111,7 +125,6 @@ export default {
     ]),
     ...mapGetters('timer', {
       timerGetString: 'GET_TIME_STRING',
-      timerTime: 'GET_TIME',
       timerStatus: 'GET_STATUS',
     }),
   },
@@ -122,42 +135,11 @@ export default {
 
   methods: {
     toogleTimer() {
-      if (this.timerStatus !== 'playing') {
-        if (this.timerStatus === 'stop') {
-          this.timer = timer.interval(() => {
-            this.timerCountdown();
-            console.log(this.timerTime);
-          }, 1000);
-          this.timerSetStatus('playing');
-        } else {
-          this.timer.resume();
-          this.timerSetStatus('playing');
-        }
-      } else {
-        this.timer.pause();
-        this.timerSetStatus('paused');
-      }
-    },
-
-    stopTimer() {
-      if (this.timerStatus !== 'stop') {
-        this.timer.pause();
-        this.timerSetStatus('stop');
-        this.timer.destroy();
-        this.timer = null;
-      }
-    },
-
-    switchJob() {
-      if (this.jobStatus === 'working') {
-        this.jobSetStatus('resting');
-      } else {
-        this.jobSetStatus('working');
-      }
-      this.timerSetNewTime(this.settingTime[this.jobStatus]);
+      this.$bus.$emit('toggle-timer');
     },
 
     doneTodo() {
+      // TODO: stop timer.
       console.log('doneTodo');
       const data = this.currentTodo;
       data.finishedAt = new Date().getTime();
@@ -165,24 +147,11 @@ export default {
       this.todoUpdate(this.currentTodo, data);
     },
 
-    resetTimer() {
-      this.timer = null;
-    },
-
-    focusTodoEditor() {
-      this.$refs.todoEditor.focusTitle();
-    },
-
-    ...mapMutations('job', {
-      jobSetStatus: 'SET_STATUS',
-    }),
     ...mapMutations('todos', {
       todoUpdate: 'TODO_UPDATE',
     }),
     ...mapMutations('timer', {
-      timerCountdown: 'COUNTDOWN',
       timerSetNewTime: 'SET_NEW_TIME',
-      timerSetStatus: 'SET_STATUS',
     }),
   },
 };

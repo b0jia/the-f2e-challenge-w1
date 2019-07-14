@@ -41,6 +41,19 @@
     flex-direction: column;
     justify-content: flex-end;
   }
+
+  .todo-summary-wrapper {
+    position: relative;
+  
+    .todo-summary {
+      &-actual {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+    }
+  }
 }
 
 .pomodoro-timer-wrapper {

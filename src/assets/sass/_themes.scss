@@ -1,7 +1,11 @@
 .app-theme-working {
-  background-color: $lightpink;
+  &:before {
+    background-color: $lightpink;
+  }
 }
 
 .app-theme-resting {
-  background-color: $lightblue;
+  &:before {
+    background-color: $lightblue;
+  }
 }

@@ -17,7 +17,7 @@ const store = {
     },
 
     TODO_UPDATE(state, data) {
-      console.log(data);
+      // console.log(data);
       // Find index
       const index = state.todos.indexOf(data);
 
@@ -46,6 +46,10 @@ const store = {
 
     currentTodo(state, getters) {
       return getters.activeTodos[0];
+    },
+
+    finishedTodos(state) {
+      return filters.done(state.todos);
     },
 
     allDone(getters) {

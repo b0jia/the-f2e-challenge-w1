@@ -4,6 +4,27 @@
   margin: 0;
 }
 
+.todo-list-header {
+  background-color: rgba($white, .2);
+  padding: 0.5rem 1rem;
+  color: $white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+
+  h5 {
+    margin-bottom: 0;
+  }
+}
+
+.todo-current{
+  &.no-todos {
+    color: $pink;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+}
+
 .todo-item {
   display: flex;
   align-items: center;
@@ -44,6 +65,12 @@
   }
 }
 
+.todo-content {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
 .todo-title {
   color: $navy;
   flex-basis: 0;
@@ -69,15 +96,35 @@
   // font-size: 1.5rem;
 }
 
-.todo-summary {
-  .todo-clock {
-    display: inline-block;
-    width: 0.75rem;
-    height: 0.75rem;
-    border-radius: 50%;
-    // background-color: rgba($black, .1);
-    border: 1px solid $navy;
-    margin: 0 4px;
+.todo-summary-wrapper {
+  position: relative;
+
+  .todo-summary {
+    // &-actual {
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   width: 100%;
+    // }
+  }
+}
+
+.todo-clock {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  // background-color: rgba($black, .1);
+  border: 1px solid $navy;
+  margin: 0 4px;
+
+  @at-root .todo-summary-estimations & {
+    border-color: rgba($pink, 0.5);
+  }
+
+  @at-root .todo-summary-actual & {
+    border-color: $navy;
+    background-color: $navy;
   }
 }
 
@@ -94,6 +141,46 @@
     .todo-actions {
       .btn {
         color: $navy;
+      }
+    }
+
+    .todo-clock {
+      @at-root .todo-summary-estimations & {
+        border-color: rgba($pink, 0.5);
+      }
+
+      @at-root .todo-summary-actual & {
+        border-color: $navy;
+        background-color: $navy;
+      }
+    }
+  }
+
+  &-light {
+    .todo-item {
+      border-bottom-color: rgba($white, 0.2);
+    }
+
+    .todo-title {
+      color: $white;
+    }
+
+    .todo-actions {
+      .btn {
+        color: $white;
+      }
+    }
+
+    .todo-summary-estimations {
+      .todo-clock {
+        border-color: rgba($white, 0.5);
+      }
+    }
+
+    .todo-summary-actual {
+      .todo-clock {
+        border-color: $white;
+        background-color: $white;
       }
     }
   }
