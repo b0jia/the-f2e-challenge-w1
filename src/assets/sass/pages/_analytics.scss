@@ -1,0 +1,59 @@
+.page-analytics {
+  padding-left: calc(5.3125rem + 15.625rem + 7.8125rem);
+  background-color: $navy;
+  display: flex;
+  flex-direction: column;
+
+  .week-switcher {
+    font-size: 1rem;
+    text-align: right;
+
+    .btn {
+      color: $white;
+      line-height: 1;
+      padding-top: 0;
+      padding-bottom: 0;
+      vertical-align: middle;
+
+      &:hover {
+        color: $pink;
+      }
+    }
+
+    .material-icons {
+      vertical-align: middle;
+    }
+
+    span, time {
+      line-height: 1;
+      vertical-align: middle;
+    }
+
+    span {
+      margin-right: 0.25rem;
+      margin-left: 0.25rem;
+    }
+  }
+
+  .analytics-this-week {
+    .title {
+      color: $white;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .amount {
+      color: $pink;
+      font-size: 4rem;
+      font-weight: 700;
+      margin-right: 0.5rem;
+    }
+
+    .unit {
+      color: rgba($white, .2);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
+}
