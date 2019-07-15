@@ -90,6 +90,7 @@
                   id="inputDueDate"
                   lang="en"
                   v-model="todo.dueDate"
+                  :default-value="todo.dueDate"
                   valueType="format"
                   input-class="form-control"
                 />

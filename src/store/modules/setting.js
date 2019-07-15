@@ -13,8 +13,9 @@ const store = {
       state.time[key] = val;
     },
 
-    SETTING_SET_RINGTON(state, { key, val }) {
-      state.rington[key] = val;
+    SETTING_SET_RINGTON(state, { key, value }) {
+      state.rington[key] = value;
+      $ls.put('setting', state);
     },
   },
 

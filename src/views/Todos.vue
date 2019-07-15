@@ -10,6 +10,7 @@
         title="TO-DO"
         :list="activeTodos"
         :show-more="false"
+        :show-date="true"
         v-on:click-check="doneTodo"
       />
 
@@ -18,6 +19,7 @@
         title="DONE"
         :list="finishedTodos"
         :show-more="false"
+        :show-date="true"
       />
     </div>
   </div>

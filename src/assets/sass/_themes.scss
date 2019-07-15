@@ -1,11 +1,15 @@
 .app-theme-working {
-  &:before {
-    background-color: $lightpink;
+  &:not(.app-navigation-open) {
+    &:before {
+      background-color: $lightpink;
+    }
   }
 }
 
 .app-theme-resting {
-  &:before {
-    background-color: $lightblue;
+  &:not(.app-navigation-open) {
+    &:before {
+      background-color: $lightblue;
+    }
   }
 }

@@ -28,7 +28,10 @@
               @click.prevent="clickCheck(todo)"
             />
           </div>
-          <div class="todo-title">{{ todo.title }}</div>
+          <div class="todo-title">
+            <span class="text">{{ todo.title }}</span>
+            <time class="date" v-if="showDate">{{ todo.dueDate }}</time>
+          </div>
           <div
             class="todo-summary-wrapper"
           >
@@ -100,6 +103,11 @@ export default {
     theme: {
       default: 'navy',
       type: String,
+    },
+
+    showDate: {
+      default: false,
+      type: Boolean,
     },
 
     showMore: {

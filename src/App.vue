@@ -1,7 +1,7 @@
 <template>
   <div id="app"
     class="app-wrapper"
-    :class="[`app-theme-${jobStatus}`]"
+    :class="[`app-theme-${jobStatus}`, {'app-navigation-open': !isHome}]"
   >
     <navigation></navigation>
 
@@ -39,6 +39,9 @@ export default {
   },
 
   computed: {
+    isHome() {
+      return this.$route.name === 'home';
+    },
     // ...mapMutations('todos', [
     //   'TODOS_INIT',
     // ]),
