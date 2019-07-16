@@ -80,6 +80,12 @@
           >
             <i class="material-icons icon-stop">stop</i>
           </div>
+          <pie
+            class="pomodoro-pie"
+            :size="540"
+            :angle="currentTime"
+            :color="jobStatus === 'resting' ? '#007bff' : '#FF4384'"
+          />
         </div>
       </div>
     </div>
@@ -90,6 +96,7 @@
 // @ is an alias to /src
 import { mapState, mapGetters, mapMutations } from 'vuex';
 import Checkbox from '@/components/Checkbox.vue';
+import Pie from '../components/Pie.vue';
 import TodoEditor from '@/components/TodoEditor.vue';
 import TodoList from '@/components/TodoList.vue';
 
@@ -98,6 +105,7 @@ export default {
 
   components: {
     Checkbox,
+    Pie,
     TodoEditor,
     TodoList,
   },
@@ -118,6 +126,9 @@ export default {
     }),
     ...mapState('setting', {
       settingTime: 'time',
+    }),
+    ...mapState('timer', {
+      currentTime: 'time',
     }),
     ...mapGetters('todos', [
       'activeTodos',
