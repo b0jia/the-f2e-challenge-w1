@@ -9,14 +9,14 @@
     >
       <input
         type="text"
-        class="form-control form-control-lg"
+        class="form-control form-control-lg-lg"
         placeholder="add a new mission…"
         v-model="todo.title"
         ref="todoInput"
       >
       <button
         id="toggleFull"
-        class="btn btn-white btn-lg text-primary"
+        class="btn btn-white btn-lg-lg text-primary"
         type="button"
         @click="toggleFullForm"
       >
@@ -24,7 +24,7 @@
       </button>
       <button
         id="addTodo"
-        class="btn btn-white btn-lg text-primary"
+        class="btn btn-white btn-lg-lg text-primary"
         type="button"
         @click="addTodo"
       >
@@ -47,8 +47,8 @@
         <div class="row">
           <div class="col-12">
             <div class="form-group row">
-              <label for="inputEstimated" class="col-3 col-form-label">Estimated</label>
-              <div class="col-9">
+              <label for="inputEstimated" class="col-12 col-lg-3 col-form-label">Estimated</label>
+              <div class="col-12 col-lg-9">
                 <select
                   id="inputEstimated"
                   class="custom-select"
@@ -68,8 +68,8 @@
           </div>
           <div class="col-12">
             <div class="form-group row">
-              <label for="inputLevel" class="col-3 col-form-label">Level</label>
-              <div class="col-9">
+              <label for="inputLevel" class="col-12 col-lg-3 col-form-label">Level</label>
+              <div class="col-12 col-lg-9">
                 <select
                   id="inputLevel"
                   class="custom-select"
@@ -84,8 +84,8 @@
           </div>
           <div class="col-12">
             <div class="form-group row">
-              <label for="inputDueDate" class="col-3 col-form-label">Due Date</label>
-              <div class="col-9">
+              <label for="inputDueDate" class="col-12 col-lg-3 col-form-label">Due Date</label>
+              <div class="col-12 col-lg-9">
                 <datepicker
                   id="inputDueDate"
                   lang="en"
@@ -99,8 +99,11 @@
           </div>
           <div class="col-12">
             <div class="form-group row">
-              <label for="inputDescriptions" class="col-3 col-form-label">Descriptions</label>
-              <div class="col-9">
+              <label
+                for="inputDescriptions"
+                class="col-12 col-lg-3 col-form-label"
+              >Descriptions</label>
+              <div class="col-12 col-lg-9">
                 <textarea
                   id="inputDescriptions"
                   class="form-control"

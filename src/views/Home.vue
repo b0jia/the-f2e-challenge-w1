@@ -1,91 +1,101 @@
 <template>
   <div class="page page-home">
     <div class="pomodoro">
-      <div class="pomodoro-jobs">
-        <todo-editor
-          ref="todoEditor"
-        />
+      <div class="pomodoro-wrapper">
+        <div class="pomodoro-block pomodoro-block-editor">
+          <todo-editor
+            ref="todoEditor"
+          />
+        </div>
 
-        <!-- current time (number) -->
-        <div class="todo-current"
-          v-if="currentTodo"
-        >
-          <div class="todo-item">
-            <div class="todo-checkbox">
-              <checkbox
-                :checked="currentTodo.finishedAt !== 0"
-                v-on:click-check="doneTodo"
-              />
+        <div class="pomodoro-block pomodoro-block-timer">
+          <div class="pomodoro-timer">
+            <div class="pomodoro-timer-text todo-timer-text d-lg-none">
+              {{ timerGetString }}
             </div>
-            <div class="todo-content">
-              <div class="todo-title">{{ currentTodo.title }}</div>
-              <div
-                class="todo-summary-wrapper"
-              >
-                <div class="todo-summary todo-summary-estimations">
-                  <span
-                    class="todo-clock"
-                    :class="{}"
-                    v-for="i in currentTodo.estimated"
-                    :key="i"
-                  ></span>
-                </div>
-                <div class="todo-summary todo-summary-actual">
-                  <!-- <span
-                    class="todo-clock"
-                    :class="{}"
-                    v-for="i in currentTodo.workingRecords"
-                    :key="i"
-                  ></span> -->
+            <div
+              class="timer-action timer-action-pp"
+              @click.prevent="toogleTimer"
+              v-if="currentTodo"
+            >
+              <i
+                class="material-icons icon-play"
+                v-if="timerStatus !== 'playing'"
+              >play_circle_filled</i>
+              <i
+                class="material-icons icon-pause"
+                v-if="timerStatus === 'playing'"
+              >pause_circle_filled</i>
+              <!-- <div class="bar"></div>
+              <div class="bar"></div> -->
+            </div>
+            <div
+              class="timer-action timer-action-stop"
+              @click.prevent="stopTimer"
+              v-if="currentTodo"
+            >
+              <i class="material-icons icon-stop">stop</i>
+            </div>
+            <pie
+              class="pomodoro-pie"
+              :size="540"
+              :angle="currentTime"
+              :color="jobStatus === 'resting' ? '#007bff' : '#FF4384'"
+            />
+          </div>
+        </div>
+
+        <div class="pomodoro-block pomodoro-block-current">
+          <div class="todo-current"
+            v-if="currentTodo"
+          >
+            <div class="todo-item">
+              <div class="todo-checkbox">
+                <checkbox
+                  :checked="currentTodo.finishedAt !== 0"
+                  v-on:click-check="doneTodo"
+                />
+              </div>
+              <div class="todo-content">
+                <div class="todo-title">{{ currentTodo.title }}</div>
+                <div
+                  class="todo-summary-wrapper"
+                >
+                  <div class="todo-summary todo-summary-estimations">
+                    <span
+                      class="todo-clock"
+                      :class="{}"
+                      v-for="i in currentTodo.estimated"
+                      :key="i"
+                    ></span>
+                  </div>
+                  <div class="todo-summary todo-summary-actual">
+                    <!-- <span
+                      class="todo-clock"
+                      :class="{}"
+                      v-for="i in currentTodo.workingRecords"
+                      :key="i"
+                    ></span> -->
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="pomodoro-timer-text todo-timer-text">
-            {{ timerGetString }}
-          </div>
-        </div>
-        <div
-          class="todo-current no-todos"
-          v-else
-        >
-          Please add a new mission to start.
-        </div>
-        <!-- next jobs -->
-        <todo-list theme="navy" :list="nextItems" :show-more="true" />
-      </div>
-      <div class="pomodoro-timer-wrapper">
-        <div class="pomodoro-timer">
-          <div
-            class="timer-action timer-action-pp"
-            @click.prevent="toogleTimer"
-            v-if="currentTodo"
-          >
-            <i
-              class="material-icons icon-play"
-              v-if="timerStatus !== 'playing'"
-            >play_circle_filled</i>
-            <i
-              class="material-icons icon-pause"
-              v-if="timerStatus === 'playing'"
-            >pause_circle_filled</i>
-            <!-- <div class="bar"></div>
-            <div class="bar"></div> -->
+            <div class="pomodoro-timer-text todo-timer-text d-none d-lg-block">
+              {{ timerGetString }}
+            </div>
           </div>
           <div
-            class="timer-action timer-action-stop"
-            @click.prevent="stopTimer"
-            v-if="currentTodo"
+            class="todo-current no-todos"
+            v-else
           >
-            <i class="material-icons icon-stop">stop</i>
+            Please add a new mission to start.
           </div>
-          <pie
-            class="pomodoro-pie"
-            :size="540"
-            :angle="currentTime"
-            :color="jobStatus === 'resting' ? '#007bff' : '#FF4384'"
-          />
+        </div>
+
+        <div class="pomodoro-block pomodoro-block-list">
+          <!-- next jobs -->
+          <todo-list theme="navy" :list="nextItems" :show-more="true" />
         </div>
       </div>
     </div>

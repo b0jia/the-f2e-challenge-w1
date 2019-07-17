@@ -55,6 +55,20 @@
             >Ringtones</div>
           </router-link>
         </li>
+        <li
+          class="nav-item"
+          v-if="!isHome"
+        >
+          <router-link
+            :to="{ name: 'home' }"
+            class="nav-link"
+            exact
+          >
+            <div class="nav-icon">
+              <i class="material-icons">close</i>
+            </div>
+          </router-link>
+        </li>
       </ul>
     </div>
     <div

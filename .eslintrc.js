@@ -17,6 +17,7 @@ module.exports = {
         'ignorePropertyModificationsFor': [
           'state', 'getters',
           'Vue',
+          'args',
         ],
       },
     ],

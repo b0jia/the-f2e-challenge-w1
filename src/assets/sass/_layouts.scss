@@ -3,7 +3,7 @@
 
   &:before {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: -2;
@@ -13,14 +13,16 @@
   }
 
   &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: -1;
-    width: 35%;
-    height: 100%;
-    background-color: $navy;
+    @include media-breakpoint-up(lg) {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: -1;
+      width: 35%;
+      height: 100%;
+      background-color: $navy;
+    }
   }
 
   &.app-navigation-open {

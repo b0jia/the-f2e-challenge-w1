@@ -1,9 +1,14 @@
 .page-settings {
-  padding-left: calc(5.3125rem + 15.625rem + 7.8125rem);
+  padding-left: 15px;
+  padding-right: 15px;
   background-color: $navy;
   display: flex;
   flex-direction: column;
   color: $white;
+
+  @include media-breakpoint-up(lg) {
+    padding-left: calc(5.3125rem + 15.625rem + 7.8125rem);
+  }
 }
 
 .setting-group {
