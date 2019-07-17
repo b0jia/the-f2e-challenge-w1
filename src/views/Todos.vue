@@ -12,6 +12,7 @@
         :show-more="false"
         :show-date="true"
         v-on:click-check="doneTodo"
+        class="mb-5"
       />
 
       <todo-list
@@ -20,6 +21,7 @@
         :list="finishedTodos"
         :show-more="false"
         :show-date="true"
+        class="mb-5"
       />
     </div>
   </div>

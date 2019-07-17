@@ -14,6 +14,25 @@
     >
       <router-view></router-view>
     </transition>
+
+    <!-- <audio
+      :src="ringTone"
+      ref="ringTone"
+    ></audio> -->
+    <audio
+      controls
+      ref="workingRingTone"
+    >
+      <source :src="workingRingTonePath" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <audio
+      controls
+      ref="restingRingTone"
+    >
+      <source :src="restingRingTonePath" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
   </div>
 </template>
 
@@ -42,6 +61,15 @@ export default {
     isHome() {
       return this.$route.name === 'home';
     },
+
+    workingRingTonePath() {
+      // eslint-disable-next-line max-len
+      return `./ringtones/${this.settingRingtone.working}.mp3`;
+    },
+    restingRingTonePath() {
+      // eslint-disable-next-line max-len
+      return `./ringtones/${this.settingRingtone.resting}.mp3`;
+    },
     // ...mapMutations('todos', [
     //   'TODOS_INIT',
     // ]),
@@ -51,6 +79,7 @@ export default {
 
     ...mapState('setting', {
       settingTime: 'time',
+      settingRingtone: 'rington',
     }),
 
     ...mapGetters('todos', [
@@ -110,7 +139,16 @@ export default {
     checkTimeout() {
       console.log('check time out');
       if (this.timerTime === 0) {
+        this.playRingTone();
         this.doneTomato();
+      }
+    },
+
+    playRingTone() {
+      if (this.jobStatus === 'working') {
+        this.$refs.workingRingTone.play();
+      } else {
+        this.$refs.restingRingTone.play();
       }
     },
 

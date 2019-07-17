@@ -1,8 +1,13 @@
 .page-analytics {
-  padding-left: calc(5.3125rem + 15.625rem + 7.8125rem);
+  padding-left: 15px;
+  padding-right: 15px;
   background-color: $navy;
   display: flex;
   flex-direction: column;
+
+  @include media-breakpoint-up(lg) {
+    padding-left: calc(5.3125rem + 15.625rem + 7.8125rem);
+  }
 
   .week-switcher {
     font-size: 1rem;

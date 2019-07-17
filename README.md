@@ -1,4 +1,12 @@
-# week-1
+# [The F2E - 前端修練精神時光屋] Week 1 - 番茄鐘
+
+## Feature
+- [x] Keep Todo list in local.
+- [x] Play notify sound.
+- [ ] Show todo descriptions.
+- [ ] Todo edit and delete.
+- [ ] Setting working and resting time.
+- [ ] Personalize.
 
 ## Project setup
 ```

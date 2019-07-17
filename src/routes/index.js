@@ -4,7 +4,7 @@ import Home from '../views/Home.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -18,32 +18,10 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+      meta: {
+        title: 'About',
+      },
     },
-    // {
-    //   path: '',
-    //   component: () => import('../layouts/TwoColumns.vue'),
-    //   children: [
-    //     {
-    //       path: 'todos',
-    //       name: 'todo-list',
-    //       component: () => import('../views/Todos.vue'),
-    //     },
-    //     {
-    //       path: 'analytics',
-    //       name: 'todo-analytics',
-    //       // route level code-splitting
-    //       // this generates a separate chunk (about.[hash].js) for this route
-    //       // which is lazy-loaded when the route is visited.
-    //       component: () => import(/* webpackChunkName: "about" */ '../views/Analytics.vue'),
-    //     },
-    //     {
-    //       path: '*',
-    //       redirect: {
-    //         name: 'todo-list',
-    //       },
-    //     },
-    //   ],
-    // },
     {
       path: '/todos',
       name: 'todos',
@@ -51,6 +29,9 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ '../views/Todos.vue'),
+      meta: {
+        title: 'Todos',
+      },
     },
     {
       path: '/analytics',
@@ -59,6 +40,9 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ '../views/Analytics.vue'),
+      meta: {
+        title: 'Analytics',
+      },
     },
     {
       path: '/settings',
@@ -67,6 +51,18 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ '../views/Settings.vue'),
+      meta: {
+        title: 'Settings',
+      },
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.title && window.gtag) {
+    window.gtag('config', process.env.VUE_APP_GA_ID, { page_path: to.path });
+  }
+  next();
+});
+
+export default router;

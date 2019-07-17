@@ -56,13 +56,30 @@
       background-color: $blue;
     }
   }
+
+  .pomodoro-timer-text {
+    position: absolute;
+    font-size: 4rem;
+    color: $white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+  }
 }
 
 .pomodoro-timer-text {
   color: $pink;
-  font-size: 11rem;
+  font-size: 6rem;
   font-weight: 700;
   line-height: 1;
+
+  @include media-breakpoint-up(lg) {
+    font-size: 9rem;
+  }
+
+  @include media-breakpoint-up(xl) {
+    font-size: 11rem;
+  }
 
   @at-root .app-theme-resting & {
     color: $blue;
@@ -87,29 +104,62 @@
     top: 50%;
     left: 50%;
     display: block;
-    width: 6rem;
-    height: 6rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-100%, 20%);
+
+    @include media-breakpoint-up(lg) {
+      width: 6rem;
+      height: 6rem;
+      transform: translate(-50%, -50%);
+    }
 
     .material-icons {
       color: $white;
-      font-size: 6rem;
+      font-size: 4rem;
       position: absolute;
+
+      @include media-breakpoint-up(lg) {
+        font-size: 6rem;
+      }
     }
   }
 
   &-stop {
-    top: calc(50% + 3rem - 0.75rem);
-    left: calc(50% + 3rem + 0.75rem);
+    top: 50%;
+    left: 50%;
     display: block;
-    width: 1.5rem;
-    height: 1.5rem;
-    transform: translate(-50%, -50%);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    transform: translate(0, 20%);
+
+    @include media-breakpoint-up(lg) {
+      top: calc(50% + 3rem - 0.75rem);
+      left: calc(50% + 3rem + 0.75rem);
+      width: 1.5rem;
+      height: 1.5rem;
+      transform: translate(-50%, -50%);
+    }
 
     .material-icons {
       color: $white;
-      font-size: 1.5rem;
+      font-size: 4rem;
+      position: absolute;
+
+      @include media-breakpoint-up(lg) {
+        font-size: 1.5rem;
+      }
     }
+    // display: block;
+    // width: 1.5rem;
+    // height: 1.5rem;
+    // transform: translate(-50%, -50%);
+
+    // .material-icons {
+    //   color: $white;
+    //   font-size: 1.5rem;
+    // }
   }
 }

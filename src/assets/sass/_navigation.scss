@@ -1,28 +1,53 @@
 .global-navigation {
   position: fixed;
   top: 0;
-  right: 5.25rem;
+  left: 0;
   z-index: 9999;
   display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 3rem 0 3rem 0;
-  align-items: flex-start;
+  width: 100%;
+  padding: 0 15px;
+  align-items: center;
   justify-content: space-between;
+  background-color: $navy;
+  box-shadow: $box-shadow;
+
+  @include media-breakpoint-up(lg) {
+    width: auto;
+    height: 100%;
+    left: auto;
+    right: 5.25rem;
+    padding: 3rem 0 3rem 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: transparent;
+    box-shadow: none;
+  }
 
   &-left {
-    width: 350px;
-    left: 5.25rem;
+    width: 100%;
+    left: 0;
     right: auto;
     transition: all .3s ease-in-out;
+
+    @include media-breakpoint-up(lg) {
+      width: 350px;
+      left: 5.25rem;
+      right: auto;
+    }
   }
 }
 
 .navbar-close {
+  display: none;
   font-size: 3rem;
   position: fixed;
   top: 3rem;
   right: 5.25rem;
+
+  @include media-breakpoint-up(lg) {
+    display: block;
+  }
 
   a {
     color: $white;
@@ -45,15 +70,45 @@
   line-height: inherit;
   white-space: nowrap;
   flex: 0 0 auto;
+  order: 1;
+
+  @include media-breakpoint-up(lg) {
+    order: 2;
+  }
 }
 
 .brand-title {
   text-transform: uppercase;
-  writing-mode: vertical-rl;
+
+  @include media-breakpoint-up(lg) {
+    writing-mode: vertical-rl;
+  }
 }
 
 .navbar-menu {
   flex: 1 1 100%;
+  order: 2;
+
+  @include media-breakpoint-up(lg) {
+    order: 1;
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+    justify-content: flex-end;
+
+    @include media-breakpoint-up(lg) {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .nav-link {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+  }
 }
 
 .nav-link {
@@ -93,17 +148,21 @@
   }
   
   .nav-text {
-    flex-basis: 0;
-    flex-grow: 1;
-    max-width: 100%;
-    font-size: 2.25rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    // transform: scaleX(0);
-    transition: transform .3s ease-in-out;
-    word-wrap: none;
-    overflow: hidden;
-    // display: none;
+    display: none;
+
+    @include media-breakpoint-up(lg) {
+      flex-basis: 0;
+      flex-grow: 1;
+      max-width: 100%;
+      font-size: 2.25rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      // transform: scaleX(0);
+      transition: transform .3s ease-in-out;
+      word-wrap: none;
+      overflow: hidden;
+      display: block;
+    }
   }
 
   @at-root .global-navigation-left & {

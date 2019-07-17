@@ -44,7 +44,11 @@
     height: 100%;
 
     &#toggleFull {
-      right: 58px;
+      right: 48px;
+
+      @include media-breakpoint-up(lg) {
+        right: 58px;
+      }
     }
   }
 
@@ -66,6 +70,12 @@
   padding: 30px;
   background-color: #fff;
   box-shadow: $box-shadow-lg;
+  max-height: 410px;
+  overflow-y: auto;
+
+  @include media-breakpoint-up(lg) {
+    max-height: none;
+  }
   // pointer-events: none;
 
   // &.show {
