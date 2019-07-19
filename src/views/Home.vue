@@ -66,16 +66,26 @@
                       class="todo-clock"
                       :class="{}"
                       v-for="i in currentTodo.estimated"
-                      :key="i"
+                      :key="`estimations_${i}`"
                     ></span>
                   </div>
                   <div class="todo-summary todo-summary-actual">
-                    <!-- <span
+                    <span
                       class="todo-clock"
                       :class="{}"
                       v-for="i in currentTodo.workingRecords"
-                      :key="i"
-                    ></span> -->
+                      :key="`actual_${i}`"
+                    ></span>
+                    <span
+                      class="todo-clock todo-clock-current"
+                    >
+                      <pie
+                        class="pomodoro-pie"
+                        :size="10"
+                        :angle="currentTime"
+                        :color="jobStatus === 'resting' ? '#007bff' : '#FF4384'"
+                      />
+                    </span>
                   </div>
                 </div>
               </div>
@@ -159,8 +169,13 @@ export default {
       this.$bus.$emit('toggle-timer');
     },
 
+    stopTimer() {
+      this.$bus.$emit('stop-timer');
+    },
+
     doneTodo() {
       // TODO: stop timer.
+      this.stopTimer();
       console.log('doneTodo');
       const data = this.currentTodo;
       data.finishedAt = new Date().getTime();

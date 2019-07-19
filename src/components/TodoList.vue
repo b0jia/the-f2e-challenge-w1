@@ -19,7 +19,7 @@
           class="todo-item"
           :class="{'todo-item-done': todo.finishedAt !== 0}"
           v-for="(todo, index) in list"
-          :key="index"
+          :key="`${todo.createdAt}_${index}`"
         >
           <div class="todo-checkbox">
             <checkbox
@@ -40,16 +40,27 @@
                 class="todo-clock"
                 :class="{}"
                 v-for="i in todo.workingRecords"
-                :key="i"
+                :key="`tdl_actual_${i}`"
               ></span>
             </div>
           </div>
           <div
             class="todo-actions"
-            v-if="todo.finishedAt === 0"
           >
-            <button class="btn btn-todo-cutline">
+            <button
+              class="btn btn-todo-cutline px-2"
+              type="button"
+              @click.prevent="cutLine(todo)"
+            >
               <i class="material-icons">play_circle_outline</i>
+            </button>
+            <button
+              class="btn btn-todo-cutline px-2"
+              type="button"
+              v-if="showDelete"
+              @click.prevent="deleteTodo(todo)"
+            >
+              <i class="material-icons">block</i>
             </button>
           </div>
         </li>
@@ -114,11 +125,17 @@ export default {
       type: Boolean,
       default: false,
     },
+
+    showDelete: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
     return {
       bActive: false,
+      mountId: null,
     };
   },
 
@@ -128,6 +145,7 @@ export default {
 
   mounted() {
     this.bActive = this.active;
+    this.mountId = new Date().getTime();
   },
 
   methods: {
@@ -141,6 +159,15 @@ export default {
 
     clickCheck(todo) {
       this.$emit('click-check', todo);
+    },
+
+    cutLine() {
+      // eslint-disable-next-line no-alert
+      window.alert('This feature is not yet open');
+    },
+
+    deleteTodo(todo) {
+      this.$emit('click-delete', todo);
     },
   },
 };

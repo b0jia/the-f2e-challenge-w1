@@ -64,11 +64,29 @@
         </div>
       </div>
     </div>
+    <div class="setting-group">
+      <div class="setting-header">
+        <h5>Settings</h5>
+      </div>
+      <div class="setting-content">
+        <div class="row">
+          <div class="col-auto">
+            <button
+              class="btn btn-danger"
+              :class="{'disabled': allTodos === 0}"
+              type="button"
+              @click.prevent="deleteTodos"
+              :disabled="allTodos === 0"
+            >Delete All Todos</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapGetters } from 'vuex';
 import ringtones from '../configs/ringtones';
 
 export default {
@@ -83,6 +101,10 @@ export default {
   },
 
   computed: {
+    ...mapGetters('todos', [
+      'allTodos',
+    ]),
+
     ...mapState('setting', {
       settingRingtone: 'rington',
     }),
@@ -96,8 +118,23 @@ export default {
       });
     },
 
+    deleteTodos() {
+      // eslint-disable-next-line no-alert
+      const deleteConfirm = window.confirm('Confirm to delete all to-do items? This will not be restored.');
+      if (deleteConfirm === true) {
+        // document.write("You pressed OK!");
+        this.todoDeleteAll();
+      } else {
+        // document.write("You pressed Cancel!");
+      }
+    },
+
     ...mapMutations('setting', {
       settingSetRingtone: 'SETTING_SET_RINGTON',
+    }),
+
+    ...mapMutations('todos', {
+      todoDeleteAll: 'TODO_DELETE_ALL',
     }),
   },
 };

@@ -1,4 +1,4 @@
-const url = require('url');
+// const url = require('url');
 const packageInfos = require('./package.json');
 
 const publicPath = process.env.NODE_ENV === 'production'
@@ -34,7 +34,9 @@ module.exports = {
             },
             'og:image': {
               property: 'og:image',
-              content: url.resolve(process.env.VUE_APP_SITE_HOST, `/img/og-image.jpg?v=${new Date().getTime()}`),
+              content: `${process.env.VUE_APP_SITE_HOST}/img/og-image.jpg?v=${new Date().getTime()}`,
+              // content: url.resolve(process.env.VUE_APP_SITE_HOST,
+              // `/img/og-image.jpg?v=${new Date().getTime()}`),
             },
             'og:image:alt': {
               property: 'og:image:alt',

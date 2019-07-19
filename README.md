@@ -4,7 +4,8 @@
 - [x] Keep Todo list in local.
 - [x] Play notify sound.
 - [ ] Show todo descriptions.
-- [ ] Todo edit and delete.
+- [ ] Todo edit.
+- [x] Todo delete.
 - [ ] Setting working and resting time.
 - [ ] Personalize.
 
