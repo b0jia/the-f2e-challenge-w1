@@ -1,5 +1,8 @@
 <template>
-  <div class="quick-timer">
+  <div
+    class="quick-timer"
+    v-if="currentTodo"
+  >
     <div
       class="quick-timer-action quick-timer-action-pp"
       @click.prevent="toogleTimer"

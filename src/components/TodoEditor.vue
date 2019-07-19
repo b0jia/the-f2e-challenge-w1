@@ -208,6 +208,7 @@ export default {
         }, 800);
         return;
       }
+      this.todo.createdAt = new Date().getTime();
       this.TODO_ADD(this.todo);
       this.resetTodo();
       this.toggleFullForm(false);

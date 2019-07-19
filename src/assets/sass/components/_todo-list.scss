@@ -141,6 +141,20 @@
   border: 1px solid $navy;
   margin: 0 4px;
 
+  &-current {
+    background-color: transparent !important;
+    border-color: rgba($pink, 0.5) !important;
+    position: relative;
+
+    .pie {
+      display: flex;
+    }
+
+    @at-root .app-theme-resting & {
+      opacity: 0;
+    }
+  }
+
   @at-root .todo-summary-estimations & {
     border-color: rgba($pink, 0.5);
   }

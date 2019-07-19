@@ -29,6 +29,24 @@ const store = {
       $ls.put('todos', state.todos);
     },
 
+    TODO_DELETE_ONE(state, data) {
+      const index = state.todos.indexOf(data);
+      // const { todos } = state;
+      state.todos.splice(index, 1);
+      // state.totos = todos;
+      $ls.put('todos', state.todos);
+    },
+
+    TODO_DELETE_ALL_DONE(state) {
+      state.todos = [];
+      $ls.put('todos', state.todos);
+    },
+
+    TODO_DELETE_ALL(state) {
+      state.todos = [];
+      $ls.put('todos', state.todos);
+    },
+
     TODO_SET_SHOW_WEEK(state, data) {
       // show week start.
       state.showWeek = data;
@@ -107,6 +125,10 @@ const store = {
         todayInWeek,
         days,
       };
+    },
+
+    allTodos(state) {
+      return state.todos.length;
     },
   },
 

@@ -20,6 +20,7 @@
       ref="ringTone"
     ></audio> -->
     <audio
+      v-show="false"
       controls
       ref="workingRingTone"
     >
@@ -27,6 +28,7 @@
       Your browser does not support the audio element.
     </audio>
     <audio
+      v-show="false"
       controls
       ref="restingRingTone"
     >
@@ -133,7 +135,14 @@ export default {
         this.timer.destroy();
         this.timer = null;
         this.timerSetNewTime(this.settingTime[this.jobStatus]);
+        return;
       }
+
+      if (this.jobStatus === 'resting' && this.timerStatus === 'stop') {
+        this.switchJob();
+        return;
+      }
+      console.log('stop nothing.');
     },
 
     checkTimeout() {
@@ -155,7 +164,7 @@ export default {
     doneTomato() {
       this.stopTimer();
 
-      if (this.jobStatus === 'resting') {
+      if (this.jobStatus === 'working') {
         this.finishTime = new Date().getTime();
         console.log('done a tomato');
         // update current todo data

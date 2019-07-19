@@ -56,7 +56,7 @@
           </router-link>
         </li>
         <li
-          class="nav-item"
+          class="nav-item d-lg-none"
           v-if="!isHome"
         >
           <router-link

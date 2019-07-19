@@ -12,6 +12,7 @@
         :show-more="false"
         :show-date="true"
         v-on:click-check="doneTodo"
+        v-on:click-delete="deleteTodo"
         class="mb-5"
       />
 
@@ -21,6 +22,8 @@
         :list="finishedTodos"
         :show-more="false"
         :show-date="true"
+        :show-delete="true"
+        v-on:click-delete="deleteTodo"
         class="mb-5"
       />
     </div>
@@ -28,7 +31,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import TodoEditor from '@/components/TodoEditor.vue';
 import TodoList from '@/components/TodoList.vue';
 
@@ -56,11 +59,21 @@ export default {
     doneTodo(todo) {
       // TODO: stop timer.
       console.log('doneTodo');
+      console.log(todo);
       const data = todo;
       data.finishedAt = new Date().getTime();
       console.log(data);
       this.todoUpdate(todo, data);
     },
+
+    deleteTodo(todo) {
+      this.todoDeleteOne(todo);
+    },
+
+    ...mapMutations('todos', {
+      todoUpdate: 'TODO_UPDATE',
+      todoDeleteOne: 'TODO_DELETE_ONE',
+    }),
   },
 };
 </script>
